@@ -7,20 +7,20 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col">
+<body class="bg-gray-100 min-h-screen flex flex-col font-sans">
 
   <!-- Top Header -->
   <header class="bg-blue-600 text-white shadow-md p-4 sticky top-0 z-50 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Kyawngar-Hub</h1>
-    <span class="text-xs bg-blue-700 px-2.5 py-1 rounded-full">v2.0 Professional</span>
+    <h1 class="text-xl font-bold tracking-wide">Kyawngar-Hub</h1>
+    <span class="text-xs bg-blue-700 px-2.5 py-1 rounded-full font-medium">v2.0 Active</span>
   </header>
 
   <!-- Main Content Area -->
-  <main class="flex-1 max-w-xl w-full mx-auto p-4 pb-20">
+  <main class="flex-1 max-w-xl w-full mx-auto p-4 pb-24">
     
     <!-- Tab 1: သတင်းစင် & ဗီဒီယို (Feed) -->
     <div id="tab-feed" class="tab-content space-y-4">
-      <h2 class="text-lg font-bold text-gray-800 mb-2">📰 သတင်းစင် & ဗီဒီယိုများ</h2>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">📰 သတင်းစင် & ဗီဒီယိုများ</h2>
       <div id="feedAds" class="space-y-4">
         <p class="text-center text-gray-500 py-6">Data များ ယူနေပါသည်...</p>
       </div>
@@ -28,7 +28,7 @@
 
     <!-- Tab 2: Reels ဗီဒီယို -->
     <div id="tab-reels" class="tab-content space-y-4 hidden">
-      <h2 class="text-lg font-bold text-gray-800 mb-2">🎬 Reels ဗီဒီယိုများ</h2>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">🎬 Reels ဗီဒီယိုများ</h2>
       <div id="reelsAds" class="space-y-6">
         <p class="text-center text-gray-500 py-6">Reels ဗီဒီယိုများ မရှိသေးပါ။</p>
       </div>
@@ -36,7 +36,7 @@
 
     <!-- Tab 3: ကြော်ငြာသီးသန့် ကဏ္ဍ -->
     <div id="tab-ads" class="tab-content space-y-4 hidden">
-      <h2 class="text-lg font-bold text-gray-800 mb-2">🏷️ အခကြေးငွေယူ ကြော်ငြာများ</h2>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">🏷️ အခကြေးငွေယူ ကြော်ငြာများ</h2>
       <div id="paidAds" class="space-y-4">
         <p class="text-center text-gray-500 py-6">ကြော်ငြာများ မရှိသေးပါ။</p>
       </div>
@@ -44,11 +44,11 @@
 
     <!-- Tab 4: Chat & အရောင်းအဝယ် -->
     <div id="tab-chat" class="tab-content space-y-4 hidden">
-      <h2 class="text-lg font-bold text-gray-800 mb-2">💬 Chat & အရောင်းအဝယ်</h2>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">💬 Chat & အရောင်းအဝယ်</h2>
       <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 text-center space-y-3">
         <p class="text-gray-600">မေးမြန်းလိုသည်များကို ဤနေရာတွင် ဆွေးနွေးနိုင်ပါပြီ။</p>
-        <input type="text" placeholder="စာတို ရိုက်ရန်..." class="w-full border p-2 rounded-lg text-sm">
-        <button class="bg-blue-600 text-white w-full py-2 rounded-lg font-semibold">ပေးပို့မည်</button>
+        <input type="text" placeholder="စာတို ရိုက်ရန်..." class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+        <button class="bg-blue-600 hover:bg-blue-700 text-white w-full py-2.5 rounded-lg font-semibold shadow">ပေးပို့မည်</button>
       </div>
     </div>
 
@@ -57,62 +57,77 @@
       <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex justify-between items-center">
         <div>
           <p class="font-bold text-gray-800">အကောက် အခြေအနေ</p>
-          <p class="text-xs text-gray-500">Login ဝင်ထားသည်</p>
+          <p class="text-xs text-green-600 font-medium">● Admin ဝင်ရောက်ထားသည်</p>
         </div>
-        <button class="bg-red-50 text-red-600 px-3 py-1.5 rounded-lg text-sm font-semibold">အကောက်ထွက်ရန်</button>
+        <button class="bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition">ထွက်ရန်</button>
       </div>
 
       <!-- Admin Upload Form -->
       <div class="bg-white rounded-xl shadow-sm p-5 border border-gray-200">
-        <h2 class="text-md font-bold text-gray-800 mb-3 border-b pb-2">⚙️ Admin ထိန်းချုပ်ခန်း (ကြော်ငြာတင်ရန်)</h2>
-        <form id="uploadForm" class="space-y-3">
-          <input type="text" id="adTitle" required placeholder="ကြော်ငြာ ခေါင်းစဉ်" class="w-full border p-2 rounded-lg text-sm">
-          <textarea id="adDescription" rows="2" placeholder="အသေးစိတ် ဖော်ပြချက်" class="w-full border p-2 rounded-lg text-sm"></textarea>
+        <h2 class="text-md font-bold text-gray-800 mb-4 border-b pb-2">⚙️ ကြော်ငြာ/ဗီဒီယို တင်ရန် ဖောင်</h2>
+        <form id="uploadForm" class="space-y-4">
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1">ကြော်ငြာ ခေါင်းစဉ်</label>
+            <input type="text" id="adTitle" required placeholder="ခေါင်းစဉ် ရေးပါ..." class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+          </div>
           
-          <select id="adCategory" class="w-full border p-2 rounded-lg text-sm bg-white">
-            <option value="feed">📰 သတင်းစင် (Feed)</option>
-            <option value="reels">🎬 Reels ဗီဒီယို</option>
-            <option value="ads">🏷️ ကြော်ငြာသီးသန့်</option>
-          </select>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1">အသေးစိတ် ဖော်ပြချက်</label>
+            <textarea id="adDescription" rows="3" placeholder="အသေးစိတ် ရေးပါ..." class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+          </div>
 
-          <input type="file" id="mediaFile" accept="video/*,image/*" required class="w-full text-xs text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:bg-blue-50 file:text-blue-700">
-          <button type="submit" id="submitBtn" class="w-full bg-blue-600 text-white font-bold py-2.5 rounded-lg text-sm shadow">ကြော်ငြာ တင်မည်</button>
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1">ပြသမည့် ကဏ္ဍ ရွေးပါ</label>
+            <select id="adCategory" class="w-full border p-2.5 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 outline-none">
+              <option value="feed">📰 သတင်းစင် (Feed)</option>
+              <option value="reels">🎬 Reels ဗီဒီယို</option>
+              <option value="ads">🏷️ ကြော်ငြာသီးသန့်</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-gray-600 mb-1">Video သို့မဟုတ် Image ဖိုင်</label>
+            <input type="file" id="mediaFile" accept="video/*,image/*" required class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+          </div>
+
+          <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg text-sm shadow transition duration-200">ကြော်ငြာ တင်မည်</button>
         </form>
-        <div id="statusMsg" class="mt-3 text-center text-xs font-semibold hidden p-2 rounded-md"></div>
+        
+        <div id="statusMsg" class="mt-4 text-center text-xs font-semibold hidden p-3 rounded-lg"></div>
       </div>
     </div>
 
     <!-- Tab 6: စည်းကမ်းချက်များ -->
     <div id="tab-rules" class="tab-content space-y-4 hidden">
-      <h2 class="text-lg font-bold text-gray-800 mb-2">📜 စည်းကမ်းချက်များ</h2>
-      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 space-y-2 text-sm text-gray-700">
-        <p>၁။ ကျင့်ဝတ်နှင့် မညီညွတ်သော ပုံ/ဗီဒီယိုများ တင်ခွင့်မပြုပါ။</p>
-        <p>၂။ တရားမဝင် ကြော်ငြာများ တင်ခြင်း တားမြစ်သည်။</p>
-        <p>၃။ အသေးစိတ် မေးမြန်းလိုပါက Admin ထံ ဆက်သွယ်ပါ။</p>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">📜 စည်းကမ်းချက်များ</h2>
+      <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 space-y-3 text-sm text-gray-700">
+        <p class="flex items-start"><span class="mr-2">၁။</span> ကျင့်ဝတ်နှင့် မညီညွတ်သော ပုံ/ဗီဒီယိုများ တင်ခွင့်မပြုပါ။</p>
+        <p class="flex items-start"><span class="mr-2">၂။</span> တရားမဝင် ကြော်ငြာများ တင်ခြင်း တားမြစ်သည်။</p>
+        <p class="flex items-start"><span class="mr-2">၃။</span> အသေးစိတ် မေးမြန်းလိုပါက Admin ထံ ဆက်သွယ်ပါ။</p>
       </div>
     </div>
 
   </main>
 
   <!-- Bottom Navigation Bar (Facebook Style) -->
-  <nav class="bg-white border-t border-gray-200 fixed bottom-0 left-0 right-0 flex justify-around py-2 shadow-lg z-50 text-xs">
-    <button onclick="switchTab('feed')" class="tab-btn text-blue-600 flex flex-col items-center flex-1 py-1" data-target="tab-feed">
-      <span class="text-lg">📰</span>သတင်းစင်
+  <nav class="bg-white border-t border-gray-200 fixed bottom-0 left-0 right-0 flex justify-around py-2 shadow-2xl z-50 text-[11px] font-medium">
+    <button onclick="switchTab('feed', this)" class="nav-btn text-blue-600 flex flex-col items-center flex-1 py-1">
+      <span class="text-xl mb-0.5">📰</span>သတင်းစင်
     </button>
-    <button onclick="switchTab('reels')" class="tab-btn text-gray-500 flex flex-col items-center flex-1 py-1" data-target="tab-reels">
-      <span class="text-lg">🎬</span>Reels
+    <button onclick="switchTab('reels', this)" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
+      <span class="text-xl mb-0.5">🎬</span>Reels
     </button>
-    <button onclick="switchTab('ads')" class="tab-btn text-gray-500 flex flex-col items-center flex-1 py-1" data-target="tab-ads">
-      <span class="text-lg">🏷️</span>ကြော်ငြာ
+    <button onclick="switchTab('ads', this)" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
+      <span class="text-xl mb-0.5">🏷️</span>ကြော်ငြာ
     </button>
-    <button onclick="switchTab('chat')" class="tab-btn text-gray-500 flex flex-col items-center flex-1 py-1" data-target="tab-chat">
-      <span class="text-lg">💬</span>Chat
+    <button onclick="switchTab('chat', this)" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
+      <span class="text-xl mb-0.5">💬</span>Chat
     </button>
-    <button onclick="switchTab('admin')" class="tab-btn text-gray-500 flex flex-col items-center flex-1 py-1" data-target="tab-admin">
-      <span class="text-lg">⚙️</span>Admin
+    <button onclick="switchTab('admin', this)" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
+      <span class="text-xl mb-0.5">⚙️</span>Admin
     </button>
-    <button onclick="switchTab('rules')" class="tab-btn text-gray-500 flex flex-col items-center flex-1 py-1" data-target="tab-rules">
-      <span class="text-lg">📜</span>စည်းကမ်း
+    <button onclick="switchTab('rules', this)" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
+      <span class="text-xl mb-0.5">📜</span>စည်းကမ်း
     </button>
   </nav>
 
@@ -122,21 +137,32 @@
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
   <script>
-    // Tab Switching Function
-    function switchTab(tabId) {
+    // Tab Switching System (စနစ်တကျ ပြန်ပြင်ထားသည်)
+    function switchTab(tabId, btnElement) {
+      // ၁။ Tab Content များအားလုံးကို ဖျောက်မည်
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.getElementById('tab-' + tabId).classList.remove('hidden');
+      
+      // ၂။ ရွေးချယ်လိုက်သော Tab ကို ဖော်မည်
+      const activeTab = document.getElementById('tab-' + tabId);
+      if (activeTab) {
+        activeTab.classList.remove('hidden');
+      }
 
-      document.querySelectorAll('.tab-btn').forEach(btn => {
+      // ၃။ Navigation Bar အရောင်များ ပြောင်းမည်
+      document.querySelectorAll('.nav-btn').forEach(btn => {
         btn.classList.remove('text-blue-600');
         btn.classList.add('text-gray-500');
       });
-      event.currentTarget.classList.remove('text-gray-500');
-      event.currentTarget.classList.add('text-blue-600');
+
+      if (btnElement) {
+        btnElement.classList.remove('text-gray-500');
+        btnElement.classList.add('text-blue-600');
+      }
+
       window.scrollTo(0, 0);
     }
 
-    // Firebase Config
+    // Firebase Config (ဆရာ့ Config အပြည့်အစုံ)
     const firebaseConfig = {
       apiKey: "AIzaSyAI0zkpynjthemXveJY9ghDwAEMxwZUgxk",
       authDomain: "kyawngar-hub.firebaseapp.com",
@@ -156,53 +182,70 @@
     const statusMsg = document.getElementById('statusMsg');
     const submitBtn = document.getElementById('submitBtn');
 
-    // Upload Handler
+    // Upload တင်သည့် စနစ်
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const title = document.getElementById('adTitle').value;
-      const description = document.getElementById('adDescription').value;
+      
+      const title = document.getElementById('adTitle').value.trim();
+      const description = document.getElementById('adDescription').value.trim();
       const category = document.getElementById('adCategory').value;
-      const file = document.getElementById('mediaFile').files[0];
+      const fileInput = document.getElementById('mediaFile');
+      const file = fileInput.files[0];
 
-      if (!file) return alert("ဖိုင်ရွေးပေးပါ!");
+      if (!file) {
+        alert("ကျေးဇူးပြု၍ ဖိုင်တစ်ခု ရွေးပေးပါ!");
+        return;
+      }
 
       submitBtn.disabled = true;
-      submitBtn.innerText = "တင်နေသည်...";
-      statusMsg.className = "mt-3 text-center text-xs font-semibold block bg-blue-50 text-blue-700 p-2 rounded-md";
-      statusMsg.innerText = "ဖိုင် Upload တင်နေပါသည်...";
+      submitBtn.innerText = "Upload တင်နေသည်...";
+      statusMsg.className = "mt-4 text-center text-xs font-semibold block bg-blue-50 text-blue-700 border border-blue-200 p-3 rounded-lg";
+      statusMsg.innerText = "ဖိုင် Upload တင်နေပါသည်... ခေတ္တစောင့်ပါ";
 
       try {
+        // Storage သို့ တင်ခြင်း
         const fileName = Date.now() + "_" + file.name;
         const storageRef = storage.ref('media/' + fileName);
         const uploadTask = await storageRef.put(file);
+        
+        // URL ယူခြင်း
         const downloadURL = await uploadTask.ref.getDownloadURL();
         const resourceType = file.type.startsWith('video') ? 'video' : 'image';
 
+        statusMsg.innerText = "Database ထဲသို့ Data သိမ်းဆည်းနေပါသည်...";
+
+        // Firestore ထဲသို့ ထည့်ခြင်း
         await db.collection("ads").add({
-          title, description, category,
+          title: title,
+          description: description,
+          category: category,
           mediaUrl: downloadURL,
           mediaType: resourceType,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
-        statusMsg.className = "mt-3 text-center text-xs font-semibold block bg-green-50 text-green-700 p-2 rounded-md";
+        statusMsg.className = "mt-4 text-center text-xs font-semibold block bg-green-50 text-green-700 border border-green-200 p-3 rounded-lg";
         statusMsg.innerText = "🎉 အောင်မြင်စွာ တင်ပြီးပါပြီ!";
         form.reset();
+
       } catch (error) {
-        statusMsg.className = "mt-3 text-center text-xs font-semibold block bg-red-50 text-red-700 p-2 rounded-md";
-        statusMsg.innerText = "အမှား: " + error.message;
+        console.error("Upload Error:", error);
+        statusMsg.className = "mt-4 text-center text-xs font-semibold block bg-red-50 text-red-700 border border-red-200 p-3 rounded-lg";
+        statusMsg.innerText = "❌ အမှားအယွင်း ရှိနေပါသည်: " + error.message;
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerText = "ကြော်ငြာ တင်မည်";
       }
     });
 
-    // Fetch and Display Ads by Category
+    // Data များကို ကဏ္ဍအလိုက် ဆွဲထုတ်ပြသသည့် စနစ်
     db.collection("ads").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
       let feedHtml = "", reelsHtml = "", paidHtml = "";
 
       if (snapshot.empty) {
         document.getElementById('feedAds').innerHTML = `<p class="text-center text-gray-500 py-6">ကြော်ငြာများ မရှိသေးပါ။</p>`;
+        document.getElementById('reelsAds').innerHTML = `<p class="text-center text-gray-500 py-6">Reels ဗီဒီယိုများ မရှိသေးပါ။</p>`;
+        document.getElementById('paidAds').innerHTML = `<p class="text-center text-gray-500 py-6">ကြော်ငြာသီးသန့် မရှိသေးပါ။</p>`;
         return;
       }
 
@@ -215,8 +258,8 @@
 
         const card = `
           <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-            <h3 class="font-bold text-gray-800">${data.title}</h3>
-            <p class="text-gray-600 text-xs mt-1">${data.description || ''}</p>
+            <h3 class="font-bold text-gray-800 text-base">${data.title}</h3>
+            ${data.description ? `<p class="text-gray-600 text-xs mt-1 leading-relaxed">${data.description}</p>` : ''}
             ${mediaTag}
           </div>
         `;
@@ -226,11 +269,13 @@
         if (cat === 'ads') paidHtml += card;
       });
 
-      document.getElementById('feedAds').innerHTML = feedHtml || `<p class="text-center text-gray-500 py-6">သတင်းစင်တွင် ကြော်ငြာမရှိပါ။</p>`;
+      document.getElementById('feedAds').innerHTML = feedHtml || `<p class="text-center text-gray-500 py-6">သတင်းစင်တွင် ကြော်ငြာမရှိသေးပါ။</p>`;
       document.getElementById('reelsAds').innerHTML = reelsHtml || `<p class="text-center text-gray-500 py-6">Reels ဗီဒီယိုများ မရှိသေးပါ။</p>`;
       document.getElementById('paidAds').innerHTML = paidHtml || `<p class="text-center text-gray-500 py-6">ကြော်ငြာသီးသန့် မရှိသေးပါ။</p>`;
+    }, (error) => {
+      console.error("Firestore Read Error:", error);
     });
   </script>
 </body>
-          </html>
-              
+              </html>
+          
