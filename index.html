@@ -3,23 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kyawngar-Hub</title>
+  <title>Kyawngar-Hub - Secure Ultimate Platform</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 min-h-screen flex flex-col font-sans pb-20">
+<body class="bg-gray-100 min-h-screen flex flex-col font-sans pb-24">
 
   <!-- Top Header -->
   <header class="bg-blue-600 text-white shadow-md p-4 sticky top-0 z-50 flex justify-between items-center">
     <h1 class="text-xl font-bold tracking-wide">Kyawngar-Hub</h1>
-    <span id="userBadge" class="text-xs bg-blue-800 px-3 py-1 rounded-full font-medium">Guest Mode</span>
+    <div class="flex items-center gap-2">
+      <button id="searchToggleBtn" class="bg-blue-700 hover:bg-blue-800 p-2 rounded-full text-sm">🔍</button>
+      <span id="userBadge" class="text-xs bg-blue-800 px-3 py-1 rounded-full font-medium">Guest Mode</span>
+    </div>
   </header>
 
+  <!-- Search Bar Modal / Box -->
+  <div id="searchBoxContainer" class="hidden bg-white border-b p-3 shadow-inner sticky top-[60px] z-40">
+    <div class="max-w-xl mx-auto flex gap-2">
+      <input type="text" id="searchInput" placeholder="ကုန်ပစ္စည်းနာမည်၊ လူနာမည်ဖြင့် ရှာရန်..." class="flex-1 border p-2 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500">
+      <button id="clearSearchBtn" class="bg-gray-200 text-gray-700 px-3 py-2 rounded-lg text-xs font-bold">ဖျက်ရန်</button>
+    </div>
+  </div>
+
   <!-- Main Content Area -->
-  <main class="flex-1 max-w-xl w-full mx-auto p-4">
+  <main class="flex-1 max-w-xl w-full mx-auto p-4 space-y-4">
     
     <!-- Tab 1: သတင်းစင် (Feed) -->
     <div id="tab-feed" class="tab-content space-y-4">
-      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">📰 သတင်းစင် & ဗီဒီယိုများ</h2>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2 flex justify-between items-center">
+        <span>📰 သတင်းစင် & ဗီဒီယိုများ</span>
+        <span class="text-xs font-normal text-blue-600">VIP & Feed</span>
+      </h2>
       <div id="feedAds" class="space-y-4">
         <p class="text-center text-gray-500 py-6">Data များ ယူနေပါသည်...</p>
       </div>
@@ -33,9 +47,9 @@
       </div>
     </div>
 
-    <!-- Tab 3: ကြော်ငြာသီးသန့် ကဏ္ဍ -->
+    <!-- Tab 3: အခကြေးငွေယူ ကြော်ငြာ (VIP Ads) -->
     <div id="tab-ads" class="tab-content space-y-4 hidden">
-      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">🏷️ အခကြေးငွေယူ ကြော်ငြာများ</h2>
+      <h2 class="text-lg font-bold text-gray-800 border-b pb-2">🏷️ အခကြေးငွေယူ (VIP) ကြော်ငြာများ</h2>
       <div id="paidAds" class="space-y-4">
         <p class="text-center text-gray-500 py-6">ကြော်ငြာများ မရှိသေးပါ။</p>
       </div>
@@ -44,55 +58,50 @@
     <!-- Tab 4: Chat & အရောင်းအဝယ် -->
     <div id="tab-chat" class="tab-content space-y-4 hidden">
       <h2 class="text-lg font-bold text-gray-800 border-b pb-2">💬 Chat & အရောင်းအဝယ်</h2>
-      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col h-[400px]">
+      <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex flex-col h-[450px]">
         <div id="chatBox" class="flex-1 overflow-y-auto space-y-2 mb-3 p-2 border rounded-lg bg-gray-50 text-sm">
           <p class="text-center text-gray-400">စကားပြောဆိုမှုများ ရောက်ရှိရန် စောင့်ဆိုင်းနေပါသည်...</p>
         </div>
         <form id="chatForm" class="flex gap-2">
-          <input type="text" id="chatInput" placeholder="စာတို ရိုက်ပါ..." required class="flex-1 border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+          <input type="text" id="chatInput" placeholder="မေးမြန်းလိုသည်များကို ရိုက်ပါ..." required class="flex-1 border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
           <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition">ပို့မည်</button>
         </form>
       </div>
     </div>
 
-    <!-- Tab 5: အကောက် & Admin ထိန်းချုပ်ခန်း -->
+    <!-- Tab 5: Admin ထိန်းချုပ်ခန်း (Secure Admin Rlay) -->
     <div id="tab-admin" class="tab-content space-y-6 hidden">
       
       <!-- Login Form -->
       <div id="loginCard" class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-        <h2 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">🔐 Admin အကောက်ဝင်ရန် / သတ်မှတ်ရန်</h2>
+        <h2 class="text-lg font-bold text-gray-800 mb-4 border-b pb-2">🔐 Admin Rlay ဝင်ရောက်ရန်</h2>
         <form id="loginForm" class="space-y-4">
           <div>
-            <label class="block text-xs font-semibold text-gray-600 mb-1">👉 အမည်သတ်မှတ်ရန်</label>
-            <input type="text" id="adminName" required placeholder="ဥပမာ - Admin Rlay" class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+            <label class="block text-xs font-semibold text-gray-600 mb-1">👉 Admin Email</label>
+            <input type="email" id="loginEmail" required placeholder="admin@gmail.com ထည့်ပါ..." class="w-full border p-2.5 rounded-lg text-sm bg-gray-50 focus:ring-2 focus:ring-blue-500 outline-none">
           </div>
           <div>
-            <label class="block text-xs font-semibold text-gray-600 mb-1">👉 Google အကောက် (Email)</label>
-            <input type="email" id="loginEmail" required placeholder="ဥပမာ - rlay7167@gmail.com" class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+            <label class="block text-xs font-semibold text-gray-600 mb-1">👉 Password (လုံခြုံစွာ ရိုက်ထည့်ပါ)</label>
+            <input type="password" id="loginPassword" minlength="6" required placeholder="Password ထည့်ပါ..." class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
           </div>
-          <div>
-            <label class="block text-xs font-semibold text-gray-600 mb-1">👉 Password ထည့်ပါ (အနည်းဆုံး ၆ လုံး)</label>
-            <input type="password" id="loginPassword" minlength="6" required placeholder="ဥပမာ - 123456" class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-          </div>
-          <button type="submit" id="loginBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg text-sm shadow transition">အကောက်ဝင်မည် / ဖန်တီးမည်</button>
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 rounded-lg text-sm shadow transition">လော့ဂ်အင် ဝင်မည်</button>
         </form>
         <div id="loginStatus" class="mt-3 text-center text-xs font-semibold hidden p-2.5 rounded-lg"></div>
       </div>
 
-      <!-- Admin Panel -->
+      <!-- Admin Panel (Secured) -->
       <div id="adminCard" class="space-y-6 hidden">
         <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200 flex justify-between items-center">
           <div>
-            <p class="font-bold text-gray-800 text-sm" id="adminNameDisplay">Admin Rlay</p>
-            <p class="text-xs text-gray-500" id="adminEmailDisplay">rlay7167@gmail.com</p>
-            <p class="text-xs text-green-600 font-medium mt-1">● ချိတ်ဆက်ပြီးပါပြီ</p>
+            <p class="font-bold text-gray-800 text-sm" id="adminEmailDisplay">Admin Rlay</p>
+            <p class="text-xs text-green-600 font-medium mt-1">● လုံခြုံစွာ ချိတ်ဆက်ပြီးပါပြီ</p>
           </div>
           <button id="logoutBtn" type="button" class="bg-red-50 text-red-600 hover:bg-red-100 px-3 py-1.5 rounded-lg text-xs font-semibold transition">အကောက်ထွက်ရန်</button>
         </div>
 
         <!-- Upload Form -->
         <div class="bg-white rounded-xl shadow-sm p-5 border border-gray-200">
-          <h2 class="text-md font-bold text-gray-800 mb-4 border-b pb-2">⚙️ Post / ကြော်ငြာ တင်ရန်</h2>
+          <h2 class="text-md font-bold text-gray-800 mb-4 border-b pb-2">⚙️ ပို့စ် / ကြော်ငြာ အသစ်တင်ရန်</h2>
           <form id="uploadForm" class="space-y-4">
             <div>
               <label class="block text-xs font-semibold text-gray-600 mb-1">ခေါင်းစဉ်</label>
@@ -100,22 +109,30 @@
             </div>
             
             <div>
-              <label class="block text-xs font-semibold text-gray-600 mb-1">အသေးစိတ်</label>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">အသေးစိတ် (ကုန်ပစ္စည်း၊ ဖုန်းနံပါတ် စသည်)</label>
               <textarea id="adDesc" rows="3" placeholder="အသေးစိတ် ရေးပါ..." class="w-full border p-2.5 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-gray-600 mb-1">ကဏ္ဍ</label>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">ကဏ္ဍ ရွေးချယ်ရန်</label>
               <select id="adCat" class="w-full border p-2.5 rounded-lg text-sm bg-white focus:ring-2 focus:ring-blue-500 outline-none">
                 <option value="feed">📰 သတင်းစင် (Feed)</option>
                 <option value="reels">🎬 Reels ဗီဒီယို</option>
-                <option value="ads">🏷️ ကြော်ငြာသီးသန့်</option>
+                <option value="ads">🏷️ အခကြေးငွေယူ (VIP) ကြော်ငြာ</option>
               </select>
             </div>
 
-            <div>
-              <label class="block text-xs font-semibold text-gray-600 mb-1">ဖိုင် (Image/Video MP4)</label>
-              <input type="file" id="adFile" accept="video/*,image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+            <!-- Media Options -->
+            <div class="p-3 bg-gray-50 rounded-lg border space-y-3">
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">📁 ဖိုင် တင်မည် (ပုံ သို့မဟုတ် MP4 ဗီဒီယို)</label>
+                <input type="file" id="adFile" accept="video/*,image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
+              </div>
+              <div class="text-center text-xs text-gray-400 font-bold">- သို့မဟုတ် -</div>
+              <div>
+                <label class="block text-xs font-semibold text-gray-600 mb-1">🔗 YouTube / TikTok Link ထည့်ရန်</label>
+                <input type="url" id="adVideoLink" placeholder="https://youtube.com/... သို့မဟုတ် TikTok Link" class="w-full border p-2 rounded-lg text-sm bg-white outline-none">
+              </div>
             </div>
 
             <button type="submit" id="uploadBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg text-sm shadow transition">ပို့စ် တင်မည်</button>
@@ -131,9 +148,9 @@
     <div id="tab-rules" class="tab-content space-y-4 hidden">
       <h2 class="text-lg font-bold text-gray-800 border-b pb-2">📜 စည်းကမ်းချက်များ</h2>
       <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-200 space-y-3 text-sm text-gray-700">
-        <p class="flex items-start"><span class="mr-2">၁။</span> ကျင့်ဝတ်နှင့် မညီညွတ်သော ပုံ/ဗီဒီယိုများ တင်ခွင့်မပြုပါ။</p>
-        <p class="flex items-start"><span class="mr-2">၂။</span> တရားမဝင် ကြော်ငြာများ တင်ခြင်း တားမြစ်သည်။</p>
-        <p class="flex items-start"><span class="mr-2">၃။</span> အသေးစိတ် မေးမြန်းလိုပါက Admin ထံ ဆက်သွယ်ပါ။</p>
+        <p class="flex items-start"><span class="mr-2">၁။</span> ဤ Website အား Admin Rlay မှသာ တရားဝင် စီမံခန့်ခွဲသည်။</p>
+        <p class="flex items-start"><span class="mr-2">၂။</span> ကျင့်ဝတ်နှင့် မညီညွတ်သော ပုံ/ဗီဒီယိုများ တင်ခွင့်မပြုပါ။</p>
+        <p class="flex items-start"><span class="mr-2">၃။</span> အသေးစိတ် မေးမြန်းလိုပါက Chat မှ တိုက်ရိုက် ဆက်သွယ်ပါ။</p>
       </div>
     </div>
 
@@ -141,34 +158,21 @@
 
   <!-- Bottom Navigation Bar -->
   <nav class="bg-white border-t border-gray-200 fixed bottom-0 left-0 right-0 flex justify-around py-2 shadow-2xl z-50 text-[11px] font-medium">
-    <button type="button" data-tab="feed" class="nav-btn text-blue-600 flex flex-col items-center flex-1 py-1">
-      <span class="text-xl mb-0.5">📰</span>သတင်းစင်
-    </button>
-    <button type="button" data-tab="reels" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
-      <span class="text-xl mb-0.5">🎬</span>Reels
-    </button>
-    <button type="button" data-tab="ads" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
-      <span class="text-xl mb-0.5">🏷️</span>ကြော်ငြာ
-    </button>
-    <button type="button" data-tab="chat" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
-      <span class="text-xl mb-0.5">💬</span>Chat
-    </button>
-    <button type="button" data-tab="admin" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
-      <span class="text-xl mb-0.5">⚙️</span>Admin
-    </button>
-    <button type="button" data-tab="rules" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1">
-      <span class="text-xl mb-0.5">📜</span>စည်းကမ်း
-    </button>
+    <button type="button" data-tab="feed" class="nav-btn text-blue-600 flex flex-col items-center flex-1 py-1"><span class="text-xl mb-0.5">📰</span>သတင်းစင်</button>
+    <button type="button" data-tab="reels" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1"><span class="text-xl mb-0.5">🎬</span>Reels</button>
+    <button type="button" data-tab="ads" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1"><span class="text-xl mb-0.5">🏷️</span>ကြော်ငြာ</button>
+    <button type="button" data-tab="chat" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1"><span class="text-xl mb-0.5">💬</span>Chat</button>
+    <button type="button" data-tab="admin" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1"><span class="text-xl mb-0.5">⚙️</span>Admin</button>
+    <button type="button" data-tab="rules" class="nav-btn text-gray-500 flex flex-col items-center flex-1 py-1"><span class="text-xl mb-0.5">📜</span>စည်းကမ်း</button>
   </nav>
 
-  <!-- Firebase Compat SDKs (Storage ပါဝင်သည်) -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
   <script>
-    // 1. Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyAI0zkpynjthemXveJY9ghDwAEMxwZUgxk",
       authDomain: "kyawngar-hub.firebaseapp.com",
@@ -176,105 +180,99 @@
       projectId: "kyawngar-hub",
       storageBucket: "kyawngar-hub.appspot.com",
       messagingSenderId: "518183426355",
-      appId: "1:518183426355:web:db11ad6cbc6b01c1a8c646",
-      measurementId: "G-JMQ8L4S12Q"
+      appId: "1:518183426355:web:db11ad6cbc6b01c1a8c646"
     };
 
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
+    if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 
     const auth = firebase.auth();
     const db = firebase.firestore();
     const storage = firebase.storage();
 
-    // 2. Navigation Tab Switching
+    // Tab Switching
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabContents = document.querySelectorAll('.tab-content');
 
     navButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         const targetTab = btn.getAttribute('data-tab');
-
         tabContents.forEach(content => content.classList.add('hidden'));
         document.getElementById(`tab-${targetTab}`).classList.remove('hidden');
-
-        navButtons.forEach(b => {
-          b.classList.remove('text-blue-600');
-          b.classList.add('text-gray-500');
-        });
-        btn.classList.remove('text-gray-500');
-        btn.classList.add('text-blue-600');
-
+        navButtons.forEach(b => { b.classList.remove('text-blue-600'); b.classList.add('text-gray-500'); });
+        btn.classList.remove('text-gray-500'); btn.classList.add('text-blue-600');
         window.scrollTo(0, 0);
       });
     });
 
-    // 3. Auth Listener
+    // Search Toggle
+    const searchToggleBtn = document.getElementById('searchToggleBtn');
+    const searchBoxContainer = document.getElementById('searchBoxContainer');
+    const searchInput = document.getElementById('searchInput');
+    let currentSearchQuery = "";
+
+    searchToggleBtn.addEventListener('click', () => {
+      searchBoxContainer.classList.toggle('hidden');
+      searchInput.focus();
+    });
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearchQuery = e.target.value.toLowerCase();
+      renderAdsData(allAdsCache);
+    });
+
+    document.getElementById('clearSearchBtn').addEventListener('click', () => {
+      searchInput.value = "";
+      currentSearchQuery = "";
+      renderAdsData(allAdsCache);
+      searchBoxContainer.classList.add('hidden');
+    });
+
+    // Secure Auth State
     auth.onAuthStateChanged((user) => {
       const loginCard = document.getElementById('loginCard');
       const adminCard = document.getElementById('adminCard');
       const userBadge = document.getElementById('userBadge');
-      const adminNameDisplay = document.getElementById('adminNameDisplay');
       const adminEmailDisplay = document.getElementById('adminEmailDisplay');
 
       if (user) {
         loginCard.classList.add('hidden');
         adminCard.classList.remove('hidden');
         userBadge.innerText = "Admin Active";
-        userBadge.className = "text-xs bg-green-600 px-3 py-1 rounded-full font-medium";
-        
-        adminNameDisplay.innerText = user.displayName || "Admin User";
-        adminEmailDisplay.innerText = user.email;
+        userBadge.className = "text-xs bg-green-600 px-3 py-1 rounded-full font-medium text-white";
+        adminEmailDisplay.innerText = "Logged in as: " + user.email;
       } else {
         loginCard.classList.remove('hidden');
         adminCard.classList.add('hidden');
         userBadge.innerText = "Guest Mode";
-        userBadge.className = "text-xs bg-blue-800 px-3 py-1 rounded-full font-medium";
+        userBadge.className = "text-xs bg-blue-800 px-3 py-1 rounded-full font-medium text-white";
       }
     });
 
-    // 4. Login System
-    const loginForm = document.getElementById('loginForm');
-    const loginStatus = document.getElementById('loginStatus');
-
-    loginForm.addEventListener('submit', async (e) => {
+    // Secure Login Form (Password ကို ကုတ်ထဲ လုံးဝမထည့်ပါ)
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const adminName = document.getElementById('adminName').value.trim();
       const email = document.getElementById('loginEmail').value.trim();
       const pass = document.getElementById('loginPassword').value.trim();
+      const status = document.getElementById('loginStatus');
 
-      loginStatus.className = "mt-3 text-center text-xs font-semibold block bg-blue-50 text-blue-700 p-2.5 rounded-lg";
-      loginStatus.innerText = "အကောက် စစ်ဆေးနေပါသည်...";
+      status.className = "mt-3 text-center text-xs font-semibold block bg-blue-50 text-blue-700 p-2.5 rounded-lg";
+      status.innerText = "စစ်ဆေးနေပါသည်...";
 
       try {
         await auth.signInWithEmailAndPassword(email, pass);
-        if (adminName && auth.currentUser) {
-          await auth.currentUser.updateProfile({ displayName: adminName });
-        }
-        loginStatus.className = "mt-3 text-center text-xs font-semibold block bg-green-50 text-green-700 p-2.5 rounded-lg";
-        loginStatus.innerText = "🎉 အကောက် အောင်မြင်စွာ ဝင်ပြီးပါပြီ!";
-        loginForm.reset();
+        status.className = "mt-3 text-center text-xs font-semibold block bg-green-50 text-green-700 p-2.5 rounded-lg";
+        status.innerText = "🎉 အောင်မြင်စွာ ဝင်ရောက်ပြီးပါပြီ!";
       } catch (err) {
-        try {
-          const newUser = await auth.createUserWithEmailAndPassword(email, pass);
-          await newUser.user.updateProfile({ displayName: adminName });
-          loginStatus.className = "mt-3 text-center text-xs font-semibold block bg-green-50 text-green-700 p-2.5 rounded-lg";
-          loginStatus.innerText = "🎉 အကောက်အသစ် ဖန်တီး၍ ဝင်ရောက်ပြီးပါပြီ!";
-          loginForm.reset();
-        } catch (createErr) {
-          loginStatus.className = "mt-3 text-center text-xs font-semibold block bg-red-50 text-red-700 p-2.5 rounded-lg";
-          loginStatus.innerText = "❌ အမှား: " + createErr.message;
-        }
+        status.className = "mt-3 text-center text-xs font-semibold block bg-red-50 text-red-700 p-2.5 rounded-lg";
+        status.innerText = "❌ အမှား: Email သို့မဟုတ် Password မှားယွင်းနေပါသည်။";
       }
     });
 
-    // 5. Logout System
     document.getElementById('logoutBtn').addEventListener('click', async () => {
       await auth.signOut();
     });
 
-    // 6. Real Firebase Storage Upload System (ဗီဒီယိုဖိုင်ကြီးများအတွက် ရာနှုန်းပြည့် အလုပ်လုပ်ပါမည်)
+    // Upload System
     const uploadForm = document.getElementById('uploadForm');
     const uploadStatus = document.getElementById('uploadStatus');
     const uploadBtn = document.getElementById('uploadBtn');
@@ -285,6 +283,7 @@
       const desc = document.getElementById('adDesc').value.trim();
       const cat = document.getElementById('adCat').value;
       const fileInput = document.getElementById('adFile');
+      const videoLink = document.getElementById('adVideoLink').value.trim();
       const file = fileInput.files[0];
 
       uploadBtn.disabled = true;
@@ -292,11 +291,11 @@
       uploadStatus.innerText = "ဖိုင်ပြင်ဆင်နေပါသည်...";
 
       try {
-        let downloadURL = "";
-        let isVideo = false;
+        let mediaURL = videoLink || "";
+        let mediaType = videoLink ? 'link' : '';
 
         if (file) {
-          isVideo = file.type.startsWith('video');
+          mediaType = file.type.startsWith('video') ? 'video' : 'image';
           const storageRef = storage.ref(`uploads/${Date.now()}_${file.name}`);
           const uploadTask = storageRef.put(file);
 
@@ -308,7 +307,7 @@
               }, 
               (error) => reject(error), 
               async () => {
-                downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                mediaURL = await uploadTask.snapshot.ref.getDownloadURL();
                 resolve();
               }
             );
@@ -321,13 +320,13 @@
           title: title,
           description: desc,
           category: cat,
-          mediaUrl: downloadURL,
-          mediaType: isVideo ? 'video' : 'image',
+          mediaUrl: mediaURL,
+          mediaType: mediaType,
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
         uploadStatus.className = "mt-4 text-center text-xs font-semibold block bg-green-50 text-green-700 p-3 rounded-lg";
-        uploadStatus.innerText = "🎉 ပို့စ် နှင့် ဗီဒီယို အောင်မြင်စွာ တင်ပြီးပါပြီ!";
+        uploadStatus.innerText = "🎉 ပို့စ် အောင်မြင်စွာ တင်ပြီးပါပြီ!";
         uploadForm.reset();
       } catch (err) {
         uploadStatus.className = "mt-4 text-center text-xs font-semibold block bg-red-50 text-red-700 p-3 rounded-lg";
@@ -337,7 +336,7 @@
       }
     });
 
-    // 7. Chat System
+    // Chat System
     const chatForm = document.getElementById('chatForm');
     const chatInput = document.getElementById('chatInput');
     const chatBox = document.getElementById('chatBox');
@@ -347,7 +346,7 @@
       const text = chatInput.value.trim();
       if (!text) return;
 
-      const senderName = auth.currentUser ? (auth.currentUser.displayName || auth.currentUser.email) : "Guest User";
+      const senderName = auth.currentUser ? "Admin Rlay" : "Visitor / ဧည့်သည်";
 
       try {
         await db.collection("chats").add({
@@ -369,39 +368,66 @@
       let html = "";
       snapshot.forEach(doc => {
         const c = doc.data();
-        html += `<div class="p-2 bg-white border rounded shadow-sm"><span class="font-bold text-blue-600 text-xs">${c.sender || 'Guest'}:</span> <p class="text-gray-800 text-sm mt-0.5">${c.text}</p></div>`;
+        const badgeColor = c.sender.includes("Admin") ? "text-red-600 font-bold" : "text-blue-600";
+        html += `<div class="p-2 bg-white border rounded shadow-sm"><span class="${badgeColor} text-xs">${c.sender}:</span> <p class="text-gray-800 text-sm mt-0.5">${c.text}</p></div>`;
       });
       chatBox.innerHTML = html;
       chatBox.scrollTop = chatBox.scrollHeight;
     });
 
-    // 8. Realtime Ads Fetching
+    // Realtime Ads Fetching & Rendering
+    let allAdsCache = [];
+
     db.collection("ads").orderBy("createdAt", "desc").onSnapshot((snapshot) => {
+      allAdsCache = [];
+      snapshot.forEach((doc) => {
+        allAdsCache.push({ id: doc.id, ...doc.data() });
+      });
+      renderAdsData(allAdsCache);
+    });
+
+    function renderAdsData(ads) {
       let feedHtml = "", reelsHtml = "", paidHtml = "";
 
-      if (snapshot.empty) {
-        document.getElementById('feedAds').innerHTML = `<p class="text-center text-gray-500 py-6">ပို့စ်များ မရှိသေးပါ။</p>`;
-        document.getElementById('reelsAds').innerHTML = `<p class="text-center text-gray-500 py-6">Reels ဗီဒီယိုများ မရှိသေးပါ။</p>`;
-        document.getElementById('paidAds').innerHTML = `<p class="text-center text-gray-500 py-6">ကြော်ငြာများ မရှိသေးပါ။</p>`;
+      const filtered = ads.filter(data => {
+        if (!currentSearchQuery) return true;
+        const titleMatch = (data.title || "").toLowerCase().includes(currentSearchQuery);
+        const descMatch = (data.description || "").toLowerCase().includes(currentSearchQuery);
+        return titleMatch || descMatch;
+      });
+
+      if (filtered.length === 0) {
+        document.getElementById('feedAds').innerHTML = `<p class="text-center text-gray-500 py-6">ရှာဖွေတွေ့ရှိမှု မရှိပါ။</p>`;
+        document.getElementById('reelsAds').innerHTML = `<p class="text-center text-gray-500 py-6">Reels ဗီဒီယို မရှိပါ။</p>`;
+        document.getElementById('paidAds').innerHTML = `<p class="text-center text-gray-500 py-6">ကြော်ငြာ မရှိပါ။</p>`;
         return;
       }
 
-      snapshot.forEach((doc) => {
-        const data = doc.data();
+      filtered.forEach((data) => {
         const cat = data.category || 'feed';
         let mediaTag = "";
 
         if (data.mediaUrl) {
-          mediaTag = data.mediaType === 'video'
-            ? `<video src="${data.mediaUrl}" controls class="w-full rounded-lg bg-black mt-2 max-h-96 object-contain"></video>`
-            : `<img src="${data.mediaUrl}" class="w-full rounded-lg mt-2 max-h-96 object-cover" alt="Media">`;
+          if (data.mediaType === 'video') {
+            mediaTag = `<video src="${data.mediaUrl}" controls class="w-full rounded-lg bg-black mt-2 max-h-96 object-contain"></video>`;
+          } else if (data.mediaType === 'image') {
+            mediaTag = `<img src="${data.mediaUrl}" class="w-full rounded-lg mt-2 max-h-96 object-cover" alt="Media">`;
+          } else if (data.mediaType === 'link') {
+            mediaTag = `<div class="p-3 bg-blue-50 border border-blue-200 rounded-lg mt-2 text-center"><a href="${data.mediaUrl}" target="_blank" class="text-blue-600 font-bold text-sm underline">🔗 ကြည့်ရှုရန် Link သို့သွားမည် (YouTube / TikTok)</a></div>`;
+          }
         }
 
         const card = `
-          <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
-            <h3 class="font-bold text-gray-800 text-base">${data.title}</h3>
-            ${data.description ? `<p class="text-gray-600 text-xs mt-1 leading-relaxed">${data.description}</p>` : ''}
+          <div class="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-2">
+            <div class="flex justify-between items-start">
+              <h3 class="font-bold text-gray-800 text-base">${data.title}</h3>
+              ${cat === 'ads' ? '<span class="bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded-full font-bold">★ VIP ကြော်ငြာ</span>' : ''}
+            </div>
+            ${data.description ? `<p class="text-gray-600 text-xs leading-relaxed">${data.description}</p>` : ''}
             ${mediaTag}
+            <div class="pt-2 border-t flex justify-end">
+              <button onclick="navigator.clipboard.writeText('${data.title}'); alert('ခေါင်းစဉ် ကူးပြီးပါပြီ!');" class="text-xs text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md font-medium hover:bg-blue-100">💬 ဆက်သွယ်ရန် / မျှဝေရန်</button>
+            </div>
           </div>
         `;
 
@@ -413,9 +439,7 @@
       document.getElementById('feedAds').innerHTML = feedHtml || `<p class="text-center text-gray-500 py-6">သတင်းစင်တွင် ပို့စ်မရှိပါ။</p>`;
       document.getElementById('reelsAds').innerHTML = reelsHtml || `<p class="text-center text-gray-500 py-6">Reels ဗီဒီယို မရှိပါ။</p>`;
       document.getElementById('paidAds').innerHTML = paidHtml || `<p class="text-center text-gray-500 py-6">ကြော်ငြာ မရှိပါ။</p>`;
-    });
+    }
   </script>
 </body>
 </html>
-                                                                                                         </html>
-                                                                                                
