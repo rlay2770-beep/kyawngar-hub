@@ -114,7 +114,7 @@
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-gray-600 mb-1">ဖိုင် (Image/Video)</label>
+              <label class="block text-xs font-semibold text-gray-600 mb-1">ဖိုင် (Image/Video MP4)</label>
               <input type="file" id="adFile" accept="video/*,image/*" class="w-full text-xs text-gray-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer">
             </div>
 
@@ -161,10 +161,11 @@
     </button>
   </nav>
 
-  <!-- Firebase Compat SDKs -->
+  <!-- Firebase Compat SDKs (Storage ပါဝင်သည်) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
 
   <script>
     // 1. Firebase Configuration
@@ -173,7 +174,7 @@
       authDomain: "kyawngar-hub.firebaseapp.com",
       databaseURL: "https://kyawngar-hub-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "kyawngar-hub",
-      storageBucket: "kyawngar-hub.firebasestorage.app",
+      storageBucket: "kyawngar-hub.appspot.com",
       messagingSenderId: "518183426355",
       appId: "1:518183426355:web:db11ad6cbc6b01c1a8c646",
       measurementId: "G-JMQ8L4S12Q"
@@ -185,6 +186,7 @@
 
     const auth = firebase.auth();
     const db = firebase.firestore();
+    const storage = firebase.storage();
 
     // 2. Navigation Tab Switching
     const navButtons = document.querySelectorAll('.nav-btn');
@@ -272,15 +274,7 @@
       await auth.signOut();
     });
 
-    // File to Base64 Converter Function
-    const fileToBase64 = file => new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = error => reject(error);
-    });
-
-    // 6. Direct Database Upload System (CORS Error ကျော်လွန်ရန်)
+    // 6. Real Firebase Storage Upload System (ဗီဒီယိုဖိုင်ကြီးများအတွက် ရာနှုန်းပြည့် အလုပ်လုပ်ပါမည်)
     const uploadForm = document.getElementById('uploadForm');
     const uploadStatus = document.getElementById('uploadStatus');
     const uploadBtn = document.getElementById('uploadBtn');
@@ -295,28 +289,45 @@
 
       uploadBtn.disabled = true;
       uploadStatus.className = "mt-4 text-center text-xs font-semibold block bg-blue-50 text-blue-700 p-3 rounded-lg";
-      uploadStatus.innerText = "ပို့စ် တင်နေပါသည်...";
+      uploadStatus.innerText = "ဖိုင်ပြင်ဆင်နေပါသည်...";
 
       try {
-        let mediaDataUrl = "";
+        let downloadURL = "";
         let isVideo = false;
 
         if (file) {
-          mediaDataUrl = await fileToBase64(file);
           isVideo = file.type.startsWith('video');
+          const storageRef = storage.ref(`uploads/${Date.now()}_${file.name}`);
+          const uploadTask = storageRef.put(file);
+
+          await new Promise((resolve, reject) => {
+            uploadTask.on('state_changed', 
+              (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                uploadStatus.innerText = `⏳ ဖိုင်တင်နေပါသည်... ${progress}%`;
+              }, 
+              (error) => reject(error), 
+              async () => {
+                downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                resolve();
+              }
+            );
+          });
         }
+
+        uploadStatus.innerText = "Data များကို သိမ်းဆည်းနေပါသည်...";
 
         await db.collection("ads").add({
           title: title,
           description: desc,
           category: cat,
-          mediaUrl: mediaDataUrl,
+          mediaUrl: downloadURL,
           mediaType: isVideo ? 'video' : 'image',
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
         uploadStatus.className = "mt-4 text-center text-xs font-semibold block bg-green-50 text-green-700 p-3 rounded-lg";
-        uploadStatus.innerText = "🎉 ပို့စ် အောင်မြင်စွာ တင်ပြီးပါပြီ!";
+        uploadStatus.innerText = "🎉 ပို့စ် နှင့် ဗီဒီယို အောင်မြင်စွာ တင်ပြီးပါပြီ!";
         uploadForm.reset();
       } catch (err) {
         uploadStatus.className = "mt-4 text-center text-xs font-semibold block bg-red-50 text-red-700 p-3 rounded-lg";
@@ -382,8 +393,8 @@
 
         if (data.mediaUrl) {
           mediaTag = data.mediaType === 'video'
-            ? `<video src="${data.mediaUrl}" controls class="w-full rounded-lg bg-black mt-2 max-h-80 object-contain"></video>`
-            : `<img src="${data.mediaUrl}" class="w-full rounded-lg mt-2 max-h-80 object-cover" alt="Media">`;
+            ? `<video src="${data.mediaUrl}" controls class="w-full rounded-lg bg-black mt-2 max-h-96 object-contain"></video>`
+            : `<img src="${data.mediaUrl}" class="w-full rounded-lg mt-2 max-h-96 object-cover" alt="Media">`;
         }
 
         const card = `
@@ -405,5 +416,6 @@
     });
   </script>
 </body>
-  </html>
-      
+</html>
+                                                                                                         </html>
+                                                                                                
